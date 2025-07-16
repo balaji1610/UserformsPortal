@@ -1,7 +1,6 @@
+"use client";
 import { useState } from "react";
-import Button from "@mui/material/Button";
 import { Box, Stack } from "@mui/material";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import IconButton from "@mui/material/IconButton";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
@@ -11,47 +10,37 @@ import TextField from "@mui/material/TextField";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 import { useNavigate } from "react-router";
-import { useSelector } from "react-redux";
-import type { crendentialType, IinitialState } from "../Interface/Interface";
-export default function Login() {
+import PersonAddAltRoundedIcon from "@mui/icons-material/PersonAddAltRounded";
+import { signUp } from "../app/CredentialsSlice";
+import { useDispatch } from "react-redux";
+import type { crendentialType } from "../Interface/Interface";
+export default function CreateAccount() {
   const navigate = useNavigate();
-  const { registerUsers } = useSelector((state: IinitialState) => state);
+  const dispatch = useDispatch();
+
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  const [logincredential, setLoginCredential] = useState({
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const [credential, setCredential] = useState<crendentialType>({
     username: "",
     password: "",
   });
 
-  const handleOnchange = (
+  const handleOnChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setLoginCredential((prev) => {
+
+    setCredential((prev) => {
       return { ...prev, [name]: value };
     });
   };
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const handleOnLoginClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleOnSignUp = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-
-    if (!logincredential.username || !logincredential.password) {
-      alert("Required");
-    }
-
-    const getUser = registerUsers.filter((el: crendentialType) => {
-      return (
-        el.username == logincredential.username &&
-        el.password == logincredential.password
-      );
-    });
-
-    if (getUser.length) {
-      alert("Login SucessFull");
-    } else {
-      alert("Invalid Credentials");
-    }
+    dispatch(signUp(credential));
   };
 
   return (
@@ -77,9 +66,11 @@ export default function Login() {
             justifyContent="center"
             alignItems="center"
           >
-            {" "}
             <Box>
-              <AccountCircleIcon color="primary" fontSize="large" />
+              <PersonAddAltRoundedIcon color="primary" fontSize="large" />
+            </Box>
+            <Box>
+              <Typography variant="subtitle1">Create a new account</Typography>
             </Box>
             <Box>
               <TextField
@@ -88,7 +79,7 @@ export default function Login() {
                 sx={{ width: "16rem" }}
                 type="email"
                 name="username"
-                onChange={(e) => handleOnchange(e)}
+                onChange={(e) => handleOnChange(e)}
               />
             </Box>
             <Box>
@@ -110,7 +101,7 @@ export default function Login() {
                     }
                     label="Password"
                     name="password"
-                    onChange={(e) => handleOnchange(e)}
+                    onChange={(e) => handleOnChange(e)}
                   />
                 </FormControl>
               </Box>
@@ -119,26 +110,25 @@ export default function Login() {
               <Button
                 type="submit"
                 variant="contained"
-                onClick={handleOnLoginClick}
+                onClick={handleOnSignUp}
               >
-                LOGIN
+                SIGN UP
               </Button>
             </Box>
             <Box>
-              Don&apos;t have an account yet ?
+              Already have an account ?
               <Typography
                 variant="subtitle1"
                 color="primary"
-                sx={{ display: "inline-block", cursor: "pointer" }}
-                onClick={() => navigate("/createaccount")}
+                sx={{ textAlign: "center", cursor: "pointer" }}
+                onClick={() => navigate("/")}
               >
-                &nbsp;Create account
+                Login
               </Typography>
             </Box>
           </Stack>
         </Box>
       </Stack>
-      {JSON.stringify(registerUsers)}
     </Box>
   );
 }
