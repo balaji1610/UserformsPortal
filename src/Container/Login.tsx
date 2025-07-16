@@ -13,10 +13,15 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
+
 import type { crendentialType, IinitialState } from "../Interface/Interface";
+
 export default function Login() {
   const navigate = useNavigate();
-  const { registerUsers } = useSelector((state: IinitialState) => state);
+
+  const { registerUsers } = useSelector(
+    (state: { CredentialsSlice: IinitialState }) => state.CredentialsSlice
+  );
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const [logincredential, setLoginCredential] = useState({
@@ -49,6 +54,7 @@ export default function Login() {
 
     if (getUser.length) {
       alert("Login SucessFull");
+      navigate("/Dashboard");
     } else {
       alert("Invalid Credentials");
     }
