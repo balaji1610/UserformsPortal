@@ -1,11 +1,13 @@
 import { useSelector } from "react-redux";
 import { Box, Button } from "@mui/material";
 import type { IinitialFormState } from "../Interface/Interface";
+import { useNavigate } from "react-router-dom";
 export default function FormsTable() {
   const { allUsers } = useSelector(
     (state: { FormsSlice: IinitialFormState }) => state.FormsSlice
   );
 
+  const navigate = useNavigate();
   return (
     <div>
       <Box
@@ -19,9 +21,6 @@ export default function FormsTable() {
               <th>name</th>
               <th>mobilenumber</th>
               <th>email</th>
-              <th>location</th>
-              <th>gender</th>
-              <th>education</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -33,11 +32,14 @@ export default function FormsTable() {
                   <td>{el.name}</td>
                   <td>{el.mobilenumber}</td>
                   <td>{el.email}</td>
-                  <td>{el.location}</td>
-                  <td>{el.gender}</td>
-                  <td>{el.education}</td>
+
                   <td>
-                    <Button variant="contained">View</Button>
+                    <Button
+                      variant="contained"
+                      onClick={() => navigate(`/Dashboard/userlists/${el.id}`)}
+                    >
+                      View
+                    </Button>
                   </td>
                 </tr>
               );

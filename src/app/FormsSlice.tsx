@@ -11,6 +11,7 @@ const userFormInfo = {
   gender: "",
   education: "",
 };
+
 const initialState: IinitialFormState = {
   allUsers: [],
   userForm: userFormInfo,

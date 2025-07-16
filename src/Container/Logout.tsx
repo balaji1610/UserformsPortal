@@ -1,5 +1,5 @@
 import { Box, Stack } from "@mui/material";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 export default function Logout() {
@@ -15,16 +15,23 @@ export default function Logout() {
         spacing={4}
       >
         <Box>
-          <Button onClick={() => navigate("/Dashboard")}>Form</Button>
+          <Button variant="outlined" onClick={() => navigate("/Dashboard")}>
+            Form
+          </Button>
         </Box>
         <Box>
           {" "}
-          <Button onClick={() => navigate("/Dashboard/table")}>UserList</Button>
+          <Button
+            variant="outlined"
+            onClick={() => navigate("/Dashboard/userlists")}
+          >
+            UserList
+          </Button>
         </Box>
 
-        <Box title="Logout" onClick={() => navigate("/")}>
-          <ExitToAppIcon color="primary" fontSize="large" />
-        </Box>
+        <Button color="error" onClick={() => navigate("/")}>
+          Logout
+        </Button>
       </Stack>
     </div>
   );
