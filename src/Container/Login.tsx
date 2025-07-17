@@ -37,7 +37,9 @@ export default function Login() {
       return { ...prev, [name]: value };
     });
   };
+
   const handleClickShowPassword = () => setShowPassword((show) => !show);
+
   const handleOnLoginClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
@@ -59,7 +61,8 @@ export default function Login() {
       alert("Invalid Credentials");
     }
   };
-
+  
+  console.log(registerUsers, "registerUsers");
   return (
     <Box>
       <Stack
@@ -144,7 +147,6 @@ export default function Login() {
           </Stack>
         </Box>
       </Stack>
-      {JSON.stringify(registerUsers)}
     </Box>
   );
 }

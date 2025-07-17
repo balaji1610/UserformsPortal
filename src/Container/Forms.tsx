@@ -32,8 +32,11 @@ export default function Forms() {
   const handleOnSubmitClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     dispatch(formSumbit());
+    alert("SucessFully Submitted");
     dispatch(reset());
   };
+
+  console.log(allUsers, "Array-allforms");
 
   return (
     <div>
@@ -106,8 +109,6 @@ export default function Forms() {
           </Button>
         </form>
       </Box>
-      {JSON.stringify(userForm)}
-      {JSON.stringify(allUsers)}
     </div>
   );
 }

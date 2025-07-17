@@ -4,10 +4,13 @@ import type { IinitialFormState, IallUsers } from "../Interface/Interface";
 import { useState, useEffect } from "react";
 
 export default function UserProfile() {
+
   const { id } = useParams();
+
   const { allUsers } = useSelector(
     (state: { FormsSlice: IinitialFormState }) => state.FormsSlice
   );
+  
   const [selectedId, setSelecteId] = useState<IallUsers[]>([]);
 
   useEffect(() => {
@@ -25,12 +28,25 @@ export default function UserProfile() {
           {selectedId.map((el: IallUsers) => {
             return (
               <ul>
-                <li>Name : {el.name}</li>
-                <li>Mobilenumber : {el.mobilenumber}</li>
-                <li>Email : {el.email}</li>
-                <li>Location : {el.location}</li>
-                <li>Gender : {el.gender}</li>
-                <li>Education : {el.education}</li>
+                <li>
+                  <b>Name :</b> {el.name}
+                </li>
+                <li>
+                  <b>Mobilenumber</b> : {el.mobilenumber}
+                </li>
+                <li>
+                  <b>Email</b> :{el.email}
+                </li>
+                <li>
+                  <b>Location </b>: {el.location}
+                </li>
+                <li>
+                  <b>Gender :</b> {el.gender}
+                </li>
+                <li>
+                  <b>Education : </b>
+                  {el.education}
+                </li>
               </ul>
             );
           })}

@@ -17,6 +17,7 @@ import { signUp } from "../app/CredentialsSlice";
 import { useDispatch } from "react-redux";
 import type { crendentialType } from "../Interface/Interface";
 export default function CreateAccount() {
+  
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -41,6 +42,7 @@ export default function CreateAccount() {
   const handleOnSignUp = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     dispatch(signUp(credential));
+    alert("Account Created SucessFully");
   };
 
   return (
