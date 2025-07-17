@@ -2,6 +2,7 @@ import { Box, Stack } from "@mui/material";
 
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
+
 export default function Logout() {
   const navigate = useNavigate();
   return (
@@ -15,7 +16,7 @@ export default function Logout() {
         spacing={4}
       >
         <Box>
-          <Button variant="outlined" onClick={() => navigate("/Dashboard")}>
+          <Button variant="outlined" onClick={() => navigate("/dashboard")}>
             Form
           </Button>
         </Box>
@@ -23,7 +24,7 @@ export default function Logout() {
           {" "}
           <Button
             variant="outlined"
-            onClick={() => navigate("/Dashboard/userlists")}
+            onClick={() => navigate("/dashboard/userlists")}
           >
             UserList
           </Button>

@@ -18,10 +18,10 @@ createRoot(document.getElementById("root")!).render(
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/createaccount" element={<CreateAccount />} />
-          <Route path="/Dashboard" element={<DashboardPage />} />
-          <Route path="/Dashboard/userlists" element={<FormsPage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/dashboard/userlists" element={<FormsPage />} />
           <Route
-            path="/Dashboard/userlists/:id"
+            path="/dashboard/userlists/:id"
             element={<UserProfilePage />}
           />
         </Routes>

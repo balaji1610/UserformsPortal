@@ -16,7 +16,7 @@ export default function UserProfile() {
     if (getId.length) {
       setSelecteId(getId);
     }
-  }, [selectedId]);
+  }, []);
   return (
     <div>
       <h1>User Profile {id}</h1>
